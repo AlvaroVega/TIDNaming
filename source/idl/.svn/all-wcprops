@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/tidnotifc/!svn/ver/974/branches/CodeCleaning/tidnaming/source/idl
+END
+NamingInternals.idl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/tidnotifc/!svn/ver/899/branches/CodeCleaning/tidnaming/source/idl/NamingInternals.idl
+END
+CosNaming.idl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/tidnotifc/!svn/ver/899/branches/CodeCleaning/tidnaming/source/idl/CosNaming.idl
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/tidnotifc/!svn/ver/974/branches/CodeCleaning/tidnaming/source/idl/Makefile.am
+END
+TIDNamingAdmin.idl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tidnotifc/!svn/ver/899/branches/CodeCleaning/tidnaming/source/idl/TIDNamingAdmin.idl
+END

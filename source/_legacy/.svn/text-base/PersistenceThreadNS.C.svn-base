@@ -1,0 +1,63 @@
+// -*- c++ -*-
+/*
+ *  File name: PersistenceThreadNS.C
+ *  File type: Body file.
+ */
+/*
+// (C) Copyright 2009 Telefonica Investigacion y Desarrollo
+ *
+//     S.A.Unipersonal (Telefonica I+D)
+//
+// This file is part of Morfeo CORBA Platform.
+//
+// Morfeo CORBA Platform is free software: you can redistribute it and/or
+// modify it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the License,
+// or (at your option) any later version.
+//
+// Morfeo CORBA Platform is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with Morfeo CORBA Platform. If not, see
+//
+//   http://www.gnu.org/licenses
+//
+// Info about members and contributors of the MORFEO project
+// is available at
+//
+//   http://morfeo-project.org
+ */
+#include "PersistenceThreadNS.h"
+
+TIDNaming::PersistenceThreadNS::PersistenceThreadNS(TIDorb::core::TIDORB* orb,
+                                                    CORBA::Object_ptr obj)
+  : m_orb(orb)
+{
+  internal_root_nc = NamingInternals::InternalNamingContextExt::_narrow(obj);
+}
+
+
+TIDNaming::PersistenceThreadNS::~PersistenceThreadNS()
+  throw ()
+{
+  CORBA::release(internal_root_nc);
+}
+
+
+void TIDNaming::PersistenceThreadNS::run()
+{
+ 
+  while (1) {
+
+    cerr << "PersistenceThreadNS::run() bucle" << endl;
+    //internal_root_nc->store("./persistence/");
+
+    // TODO: time to sleep must be passed as a param?
+    TIDThr::Thread::sleep(10000); // 10 ''
+
+    
+  }
+}

@@ -1,0 +1,69 @@
+#!/bin/sh
+
+system_os=`uname -o 2> /dev/null`
+if test x"$?" = x"0"; then
+	case ${system_os} in
+		"GNU/Linux") bindir="/usr/bin";;
+		*) bindir="/usr/bin";;
+	esac
+else
+	# Cannot execute uname. Let's try with /usr/bin as bindir.
+	echo "Warning: cannot determine OS type with uname."
+	bindir="/usr/bin"
+fi
+
+
+aclocal_bin="${bindir}/aclocal-1.9"
+autoconf_bin="${bindir}/autoconf"
+automake_bin="${bindir}/automake-1.9"
+
+if test -x "$aclocal_bin"; then
+	# Next code is implemented to avoid warning output to be shown.
+	aclocal_output_file=".aclocal.output"
+  echo -n "Executing aclocal   : "
+	${aclocal_bin} -I m4 &>${aclocal_output_file}
+	result=$?
+	rm ${aclocal_output_file}
+  if test x"${result}" = x"0"; then
+    echo "OK"
+  else
+    echo "ERROR: aclocal command failed"
+		cat ${aclocal_output_file}
+    exit
+  fi
+else
+  echo "ERROR: cannot find aclocal executable at ${aclocal_bin}"
+  exit
+fi
+
+if test -x "$autoconf_bin"; then
+  echo -n "Executing autoconf  : "
+  if ${autoconf_bin}; then
+    echo "OK"
+  else
+    echo "ERROR: autoconf command failed"
+    exit
+  fi
+
+else
+  echo "ERROR: cannot find autoconf executable at ${autoconf_bin}"
+  exit
+fi
+
+if test -x "$automake_bin"; then
+  echo -n "Executing automake  : "
+  if ${automake_bin}; then
+    echo OK
+  else
+    echo "ERROR: automake command failed"
+    exit
+  fi
+
+else
+  echo "ERROR: cannot find autoconf executable at ${automake_bin}"
+  exit
+fi
+
+echo "Autotool files generated succesfully."
+echo "Now execute './configure' to set up compilation environment."
+

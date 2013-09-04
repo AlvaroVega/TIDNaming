@@ -1,0 +1,277 @@
+This release of TIDNaming follows
+- OMG Naming Service Specification, Version 1.3
+
+-------------------------------------------------------------------------------
+The following Test Report represents the CORBA compliant:
+
+
+#################
+# Tests Summary #
+#################
+
+
+·Structural Tests
+=================
+
+
+Test Case COS_Naming
+--------------------
+
+
+Istring                                                         [OK]
+
+
+
+NameComponent                                                   [OK]
+
+      Istring id                                                [OK]
+
+      Istring kind                                              [OK]
+
+
+
+Name                                                            [OK]
+
+
+
+BindingType                                                     [OK]
+
+      nobject                                                   [OK]
+
+      ncontext                                                  [OK]    
+
+
+
+Binding                                                         [OK]
+
+      Name binding_name                                         [OK]
+
+      BindingType binding_type;                                 [OK]
+
+
+
+BindingList                                                     [OK]
+
+
+
+NamingContext                                                   [OK]
+
+      NotFoundReason                                            [OK]
+
+            missing_mode                                        [OK]
+
+            not_context                                         [OK]
+
+            not_object                                          [OK]
+
+
+      NotFound                                                  [OK]
+
+            NotFoundReason why                                  [OK]
+
+            Name rest_of_name                                   [OK]
+
+
+      CannotProceed                                             [OK]
+
+            NamingContext cxt                                   [OK]
+
+            Name rest_of_name                                   [OK]
+
+      InvalidName                                               [OK]
+
+      AlreadyBound                                              [OK]
+
+      NotEmpty                                                  [OK]
+
+
+      Object resolve (in Name n)                                [OK]
+
+      void bind (in Name n, in Object obj)                      [OK]
+
+      void rebind (in Name n, in Object obj)                    [OK]
+
+      void unbind (in Name n)                                   [OK]
+
+      NamingContext new_context();                              [OK]
+    
+      void bind_context(in Name n, in NamingContext nc)         [OK]
+
+      void rebind_context(in Name n, in NamingContext nc)       [OK]
+
+      NamingContext bind_new_context(in Name n)                 [OK]
+
+      void destroy()                                            [OK]
+
+      void list( )                                              [OK]
+
+
+
+BindingIterator                                                 [OK]
+                                                                
+      boolean next_one (out Binding b)                          [OK]
+ 
+      boolean next_n ( )                                        [OK] 
+
+      void destroy()                                            [OK]
+
+
+
+NamingContextExt                                                [OK]
+
+      StringName                                                [OK]
+     
+      Address                                                   [OK]
+
+      URLString                                                 [OK]
+
+      StringName to_string(in Name n)                           [OK] 
+
+      Name to_name(in StringName sn)                            [OK]
+
+      InvalidAddress                                            [OK]
+
+      URLString to_url(in Address addr, in StringName sn)       [OK]
+
+      Object resolve_str(in StringName sn)                      [OK]
+
+
+      NotFoundReason                                            [OK]
+
+            missing_mode                                        [OK]
+
+            not_context                                         [OK]
+
+            not_object                                          [OK]
+
+
+      NotFound                                                  [OK]
+
+            NotFoundReason why                                  [OK]
+
+            Name rest_of_name                                   [OK]
+
+
+      CannotProceed                                             [OK]
+
+            NamingContext cxt                                   [OK]
+
+            Name rest_of_name                                   [OK]
+
+      InvalidName                                               [OK]
+
+      AlreadyBound                                              [OK]
+
+      NotEmpty                                                  [OK]
+
+      Object resolve (in Name n)                                [OK]
+
+      void bind (in Name n, in Object obj)                      [OK]
+
+      void rebind (in Name n, in Object obj)                    [OK]
+
+      void unbind (in Name n)                                   [OK]
+
+      NamingContext new_context();                              [OK]
+    
+      void bind_context(in Name n, in NamingContext nc)         [OK]
+
+      void rebind_context(in Name n, in NamingContext nc)       [OK]
+
+      NamingContext bind_new_context(in Name n)                 [OK]
+
+      void destroy()                                            [OK]
+
+      void list( )                                              [OK]
+
+
+
+·Functional Tests
+=================
+
+
+Test Case NamingContext
+-----------------------
+
+NamingContext::resolve (x 3)                                    [OK]
+NamingContext::bind (x 5)                                       [OK]
+NamingContext::rebind (x 5)                                     [OK]
+NamingContext::unbind (x 6)                                     [OK]
+NamingContext::new_context (x 2)                                [OK]
+NamingContext::bind_context (x 4)                               [OK]
+NamingContext::rebind_context (x 3)                             [OK]
+NamingContext::bind_new_context (x 5)                           [OK]
+NamingContext::destroy (x 5)                                    [OK]
+NamingContext::list (x 2)                                       [OK]
+
+
+Test Case BindingContext
+------------------------
+
+BindingIterator::next_one (x 2)                                 [OK]
+BindingIterator::next_n (x 2)                                   [OK]
+BindingIterator::destroy (x 2)                                  [OK]
+
+
+Test Case NamingContextExt
+--------------------------
+
+NamingContextExt::to_string (x 3)                               [OK]
+NamingContextExt::to_name (x 2)                                 [OK]
+NamingContextExt::to_url (x 5)                                  [OK]
+NamingContextExt::resolve_str (x 2)                             [OK]
+
+NamingContextExt::resolve (x 3)                                 [OK]
+NamingContextExt::bind (x 5)                                    [OK]
+NamingContextExt::rebind (x 5)                                  [OK]
+NamingContextExt::unbind (x 6)                                  [OK]
+NamingContextExt::new_context (x 2)                             [OK]
+NamingContextExt::bind_context (x 4)                            [OK]                            
+NamingContextExt::rebind_context (x 5)                          [OK]
+NamingContextExt::bind_new_context (x 5)                        [OK]
+NamingContextExt::destroy (x 5)                                 [OK]
+NamingContextExt::list (x 2)                                    [OK]
+
+
+Test Case SSLIOP NamingContext
+------------------------------
+
+NamingContext::resolve (x 3)                                    [OK]
+NamingContext::bind (x 5)                                       [OK]
+NamingContext::rebind (x 5)                                     [OK]
+NamingContext::unbind (x 6)                                     [OK]
+NamingContext::new_context (x 2)                                [OK]
+NamingContext::bind_context (x 4)                               [OK]
+NamingContext::rebind_context (x 3)                             [OK]
+NamingContext::bind_new_context (x 5)                           [OK]
+NamingContext::destroy (x 5)                                    [OK]
+NamingContext::list (x 2)                                       [OK]
+
+
+Test Case SSLIOP BindingContext
+-------------------------------
+
+BindingIterator::next_one (x 2)                                 [OK]
+BindingIterator::next_n (x 2)                                   [OK]
+BindingIterator::destroy (x 2)                                  [OK]
+
+
+Test Case SSLIOP NamingContextExt
+---------------------------------
+
+NamingContextExt::to_string (x 3)                               [OK]
+NamingContextExt::to_name (x 2)                                 [OK]
+NamingContextExt::to_url (x 5)                                  [OK]
+NamingContextExt::resolve_str (x 2)                             [OK]
+
+NamingContextExt::resolve (x 3)                                 [OK]
+NamingContextExt::bind (x 5)                                    [OK]
+NamingContextExt::rebind (x 5)                                  [OK]
+NamingContextExt::unbind (x 6)                                  [OK]
+NamingContextExt::new_context (x 2)                             [OK]
+NamingContextExt::bind_context (x 4)                            [OK]                            
+NamingContextExt::rebind_context (x 5)                          [OK]
+NamingContextExt::bind_new_context (x 5)                        [OK]
+NamingContextExt::destroy (x 5)                                 [OK]
+NamingContextExt::list (x 2)                                    [OK]
+

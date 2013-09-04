@@ -1,0 +1,40 @@
+	* Fix bug [#1149] Memory leak in BindingIteratorImpl::next_one 
+
+2009-11-16 Alvaro Vega Garcia  <avega at tid dot es>
+
+	* TIDNamingC version 1.0.4 released
+	* Task [#782] Adapt TIDNaming for use with SSLIOP
+	* Feature [#948] print IOR to Naming Service in a file
+	
+2009-03-12 Alvaro Vega Garcia  <avega at tid dot es>
+	
+	* TIDNamingC version 1.0.3 released
+	* Fix bug [#936] Incorrect declaration at CosNaming.idl: enum 
+	BindingType
+
+2008-10-22 Alvaro Vega Garcia  <avega at tid dot es>
+	
+	* TIDNamingC version 1.0.2 released
+	* Fix bug [#809] Core dump: BindingIterator erasing implicit in	
+	NamingContext
+	* Fix bug [#796] memory problems with BindingIterator::next_one
+
+2008-02-04 Alvaro Polo Valdenebro <apv at tid dot es>
+
+	* TIDNamingC version 1.0.1 released
+	* Fix enhancement [#400] compilation support for Solaris 8
+	* Compilation support for Solaris 8 added
+	* Some calls to GNU APIs substituted with POSIX-compliant calls
+	Built with TIDIldc 1.3.5
+
+2008-01-29 Alvaro Vega Garcia  <avega at tid dot es>
+	
+	* TIDNamingC version 1.0.0 released.
+	Built with TIDIdlc 1.3.3
+
+
+
+
+	
+
+

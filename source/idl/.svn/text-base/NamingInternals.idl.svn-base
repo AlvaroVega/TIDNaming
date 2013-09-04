@@ -1,0 +1,63 @@
+// -*- idl -*-
+/*
+ *  File name: NamingInternals.idl
+ *  File type: IDL file.
+ */
+/*
+ * Copyright (C) 2008 Telefonica I+D S.A.
+ *
+ * This source file is a property of Telefonica I+D. You can not
+ * use it for any purpose unless you have an explicit authorization
+ * by owner.
+ */
+#ifndef _NAMING_INTERNALS_IDL_
+#define _NAMING_INTERNALS_IDL_
+
+#include <CosNaming.idl>
+
+#pragma prefix "tid.es"
+
+module NamingInternals {
+  
+  exception PersistenceException
+  {
+    string msg;
+  };
+  
+  struct Reference
+  {
+    CosNaming::NameComponent name;
+    CosNaming::BindingType   type;
+    string                   ior;
+  };
+  
+  typedef sequence<Reference> ReferenceSeq;
+	
+  struct ContextInfo
+  {
+    string       oid;
+    ReferenceSeq refs;
+  };
+	
+  typedef sequence<ContextInfo> ContextInfoSeq;
+  
+  const string RootNamingContextOID = "root.ctx";
+
+  
+  interface InternalNamingContext 
+    : CosNaming::NamingContext
+  {
+    string getObjectId();    
+    void getModifiedReferences(out ReferenceSeq refs);
+  };
+
+  
+  interface InternalNamingContextExt 
+    : CosNaming::NamingContextExt
+  {
+    string getObjectId();		
+    void getModifiedReferences(out ReferenceSeq refs); 
+  };
+  
+};
+#endif

@@ -1,0 +1,56 @@
+IDL_FILES=Echo.idl
+
+IDL_SRC_FILES=EchoC.h EchoC.cpp EchoC.inl \
+	EchoS.h EchoS.cpp EchoS.inl \
+	EchoS_T.cpp EchoS_T.h EchoS_T.inl
+IDL_OBJ_FILES=EchoC.o EchoS.o #EchoS_T.o
+IDL_GENERATED=$(IDL_SOURCE) $(IDL_SRC_FILES) $(IDL_OBJ_FILES)
+
+IDL_LIBNAME=libIdl.a
+IDL_LIB=-lIdl
+
+IDL2CXX=tao_idl
+IDL2CXX_FLAGS=-Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h  \
+	 -H dynamic_hash -I$(TAO_ROOT) -I$(TAO_ROOT)/orbsvcs/orbsvcs -Cw
+
+
+OBJECTS=
+BINARIES=TestSimple
+
+LIBNAMES=$(IDL_LIBNAME)
+LIBS=$(IDL_LIB)
+
+CXX=g++-4.1
+CXXFLAGS=-g -Wall -D_REENTRANT -D_GNU_SOURCE -D_TAO
+
+CPP=$(CXX) -P
+CPPFLAGS=-I. -I$(ACE_ROOT) -I$(TAO_ROOT) -I$(TAO_ROOT)/orbsvcs -I$(TAO_ROOT)/orbsvcs/orbsvcs
+
+LD=$(CXX)
+LDFLAGS=-g -L.  -L$(ACE_ROOT)/lib 
+LDLIBS=$(LIBS) -lACE -lTAO -lTAO_PortableServer -lTAO_TypeCodeFactory -lTAO_CodecFactory \
+	-lTAO_PortableGroup -lTAO_PI_Server -lTAO_DynamicAny -lTAO_DynamicInterface \
+	-lTAO_CosNaming -lTAO_CosNaming_Serv \
+	-ldl -lm -lpthread -lrt
+AR=ar
+ARFLAGS=rcs
+
+
+all: TestSimple
+
+build: clean all
+
+clean:
+	rm -rf *.o ior.dat $(BINARIES) $(LIBNAMES) $(IDL_GENERATED)
+
+TestSimple: $(LIBNAMES) TestSimple.o $(OBJECTS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(OBJECTS) $(LDLIBS)
+
+$(IDL_SRC_FILES):
+	$(IDL2CXX) $(IDL2CXX_FLAGS) $(IDL_FILES)
+
+$(IDL_LIBNAME): $(IDL_SRC_FILES) $(IDL_OBJ_FILES)
+	 $(AR) $(ARFLAGS) $@ $(IDL_OBJ_FILES)
+
+.cpp.o .cc.o .C.o:
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ -c $<

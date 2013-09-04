@@ -1,0 +1,41 @@
+// -*- idl -*-
+/*
+ *  File name: TIDNamingAdmin.idl
+ *  File type: IDL file.
+ */
+/*
+ * Copyright (C) 2008 Telefonica I+D S.A.
+ *
+ * This source file is a property of Telefonica I+D. You can not
+ * use it for any purpose unless you have an explicit authorization
+ * by owner.
+ */
+#ifndef _TID_NAMING_ADMIN_IDL_
+#define _TID_NAMING_ADMIN_IDL_
+
+#include "CosNaming.idl"
+
+#pragma prefix "tid.es"
+
+//
+// Administration utilities for TIDNaming
+//  
+
+module TIDNamingAdmin {
+
+  exception InvalidName {};
+  
+  interface Agent {
+    
+    void set_initial_reference (in string object_name, in Object obj)
+      raises (InvalidName);
+    
+    // TODO: add start, stop, etc
+    // ...
+
+  };
+
+}; // TIDNamingAdmin
+
+
+#endif

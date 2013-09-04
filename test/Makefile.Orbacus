@@ -1,0 +1,53 @@
+IDL_FILES=Echo.idl
+
+IDL_SRC_FILES=Echo.h Echo.cpp \
+	Echo_skel.h Echo_skel.cpp
+
+IDL_OBJ_FILES=Echo.o Echo_skel.o 
+IDL_GENERATED=$(IDL_SOURCE) $(IDL_SRC_FILES) $(IDL_OBJ_FILES)
+
+IDL_LIBNAME=libIdl.a
+IDL_LIB=-lIdl
+
+IDL2CXX=$(ORBACUS_HOME)/bin/idl
+IDL2CXX_FLAGS=
+
+
+OBJECTS=
+BINARIES=TestSimple
+
+LIBNAMES=$(IDL_LIBNAME)
+LIBS=$(IDL_LIB)
+
+CXX=g++-4.1
+CXXFLAGS=-g -Wall -D_REENTRANT -D_GNU_SOURCE -D_ORBACUS 
+
+CPP=$(CXX) -P
+CPPFLAGS=-I. -I$(ORBACUS_HOME)/include 
+
+LD=$(CXX)
+LDFLAGS=-g -L. -L$(ORBACUS_HOME)/lib
+LDLIBS=$(LIBS) -lOB -IDL -lIMR -lJTC -lCosNaming \
+	-ldl -lm -lpthread -lrt
+AR=ar
+ARFLAGS=rcs
+
+
+all: TestSimple
+
+build: clean all
+
+clean:
+	rm -rf *.o ior.dat $(BINARIES) $(LIBNAMES) $(IDL_GENERATED)
+
+TestSimple: $(LIBNAMES) TestSimple.o $(OBJECTS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(OBJECTS) $(LDLIBS)
+
+$(IDL_SRC_FILES):
+	$(IDL2CXX) $(IDL2CXX_FLAGS) $(IDL_FILES)
+
+$(IDL_LIBNAME): $(IDL_SRC_FILES) $(IDL_OBJ_FILES)
+	 $(AR) $(ARFLAGS) $@ $(IDL_OBJ_FILES)
+
+.cpp.o .cc.o .C.o:
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ -c $<

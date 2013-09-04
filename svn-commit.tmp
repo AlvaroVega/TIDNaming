@@ -1,0 +1,5 @@
+
+--This line, and those below, will be ignored--
+
+A    test/TestSimple_ssl.C
+M    source/idl/Makefile.am

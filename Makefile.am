@@ -1,0 +1,3 @@
+SUBDIRS = source test
+
+dist_doc_DATA = OMG_SPEC INSTALL AUTHORS VERSION BUGS ChangeLog BUILT

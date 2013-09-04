@@ -1,0 +1,17 @@
+This release of TIDNamingC++ was built on a machine with kernel:
+Linux sally 2.6.26-2-xen-amd64 #1 SMP Thu Nov 5 04:27:12 UTC 2009 x86_64 GNU/Linux
+
+using the compiler:
+gcc version 4.3.2 (Debian 4.3.2-1.1) 
+
+kernel source package used:
+linux-source-2.6.26 x86_64
+
+
+using the following libraries:
+gcc-4.3.2-1
+make-3.81-5
+binutils-2.18-1
+libc6-2.7
+TIDIdlc_1.3.11
+TIDorbC_6.4.3
