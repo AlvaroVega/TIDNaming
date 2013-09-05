@@ -1,9 +1,0 @@
-// -*- c++ -*-
-
-module Echo{
-
-  interface Test{ // Interface to invoke with NamingService
-    string echo (in string s);
-  };
-
-};
